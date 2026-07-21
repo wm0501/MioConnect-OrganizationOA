@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mio组织账号OA流程</title>
+  <style>
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+    }
+    * {
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app" style="max-width: 1240px; margin: 0 auto; padding: 20px; min-height: 100vh;">
+
+  <div style="text-align: center; margin-bottom: 30px;">
+    <h1 style="color: #1a1a2e; font-size: 28px; margin-bottom: 8px;">Mio组织账号OA流程</h1>
+    
+  </div>
+
+  <div style="display: flex; justify-content: center; margin-bottom: 24px; gap: 8px;">
+    <button id="tab-flowchart" style="padding: 10px 28px; border: none; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 600; transition: all 0.3s; background: #4f46e5; color: white; box-shadow: 0 2px 8px rgba(79,70,229,0.3);">
+      流程图
+    </button>
+    <button id="tab-oaform" style="padding: 10px 28px; border: none; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 600; transition: all 0.3s; background: #e5e7eb; color: #4b5563;">
+      OA界面原型
+    </button>
+  </div>
+
+  <div id="panel-flowchart" style="display: block;">
+    <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+      <h2 style="color: #1a1a2e; margin-bottom: 24px; font-size: 20px;">Mio组织账号OA审批流程图</h2>
+
+      <svg viewBox="0 0 1150 1520" style="width: 100%; max-width: 1150px; display: block; margin: 0 auto;">
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+          </marker>
+          <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+          </marker>
+          <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/>
+          </marker>
+          <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+          </marker>
+          <marker id="arrowhead-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/>
+          </marker>
+        </defs>
+
+        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f3f4f6" stroke-width="1"/>
+        </pattern>
+        <rect width="1150" height="1520" fill="url(#grid)"/>
+
+        <!-- 顶端：开始 -->
+        <ellipse cx="580" cy="40" rx="70" ry="26" fill="#4f46e5" stroke="#4338ca" stroke-width="2"/>
+        <text x="580" y="45" text-anchor="middle" fill="white" font-size="14" font-weight="bold">开始</text>
+        <line x1="580" y1="66" x2="580" y2="90" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 选择类型 -->
+        <rect x="460" y="90" width="240" height="48" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+        <text x="580" y="110" text-anchor="middle" fill="#1e40af" font-size="13" font-weight="600">选择类型</text>
+        <text x="580" y="126" text-anchor="middle" fill="#3b82f6" font-size="11">创建 / 修改 / 废弃</text>
+
+        <!-- 主干分叉线 -->
+        <line x1="580" y1="138" x2="580" y2="160" stroke="#6b7280" stroke-width="2"/>
+        <line x1="220" y1="160" x2="940" y2="160" stroke="#6b7280" stroke-width="2"/>
+
+        <!-- ==================== 分支1: 创建 (居中轴 X=220) ==================== -->
+        <line x1="220" y1="160" x2="220" y2="190" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="140" y="190" width="160" height="44" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="220" y="211" text-anchor="middle" fill="#065f46" font-size="13" font-weight="600">创建</text>
+        <text x="220" y="225" text-anchor="middle" fill="#059669" font-size="10">Create</text>
+
+        <line x1="220" y1="234" x2="220" y2="260" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="130" y="260" width="180" height="44" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="220" y="281" text-anchor="middle" fill="#92400e" font-size="12" font-weight="600">选择用途</text>
+        <text x="220" y="295" text-anchor="middle" fill="#d97706" font-size="10">内部 / 客户</text>
+
+        <!-- 选择用途 分叉线 -> 内部 (X=110) & 客户 (X=330) -->
+        <path d="M 220 304 L 220 320 L 110 320 L 110 340" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <path d="M 220 304 L 220 320 L 330 320 L 330 340" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 内部用途分支 (X=110) -->
+        <rect x="50" y="340" width="120" height="56" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+        <text x="110" y="360" text-anchor="middle" fill="#3730a3" font-size="12" font-weight="600">内部</text>
+        <text x="110" y="375" text-anchor="middle" fill="#6366f1" font-size="10">组织名+账号</text>
+       
+
+        <line x1="110" y1="396" x2="110" y2="430" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="40" y="430" width="140" height="44" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+        <text x="110" y="450" text-anchor="middle" fill="#065f46" font-size="11" font-weight="600">发起人→产品经理</text>
+        <text x="110" y="464" text-anchor="middle" fill="#059669" font-size="9">归档：发起人+产品经理</text>
+
+        <!-- 客户用途分支 (X=330) -->
+        <rect x="270" y="340" width="120" height="56" rx="8" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+        <text x="330" y="360" text-anchor="middle" fill="#9d174d" font-size="12" font-weight="600">客户</text>
+        <text x="330" y="375" text-anchor="middle" fill="#db2777" font-size="10">含SAP、账单周期</text>
+        <text x="330" y="387" text-anchor="middle" fill="#db2777" font-size="10">SIM卡套餐等</text>
+
+        <line x1="330" y1="396" x2="330" y2="430" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="260" y="430" width="140" height="44" rx="8" fill="#f3e8ff" stroke="#a855f7" stroke-width="2"/>
+        <text x="330" y="451" text-anchor="middle" fill="#6b21a8" font-size="12" font-weight="600">SIM套餐/账单周期</text>
+        <text x="330" y="465" text-anchor="middle" fill="#9333ea" font-size="10">标准和自定义/月度和季度</text>
+
+        <!-- SIM套餐分叉 -> 创建-标准 (X=230) & 创建-自定义 (X=370) -->
+        <path d="M 330 474 L 330 488 L 230 488 L 230 500" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <path d="M 330 474 L 330 488 L 370 488 L 370 500" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 创建-标准套餐 (X=230) -->
+        <rect x="175" y="500" width="110" height="68" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+        <text x="230" y="520" text-anchor="middle" fill="#065f46" font-size="11" font-weight="600">标准and月度</text>
+        <text x="230" y="534" text-anchor="middle" fill="#059669" font-size="9">固定内容不可改</text>
+        <text x="230" y="546" text-anchor="middle" fill="#059669" font-size="9">销售→组长审批</text>
+        <text x="230" y="558" text-anchor="middle" fill="#059669" font-size="9">组长直接归档</text>
+
+        <!-- 创建-自定义套餐/季度账单 (X=370) -->
+        <rect x="315" y="500" width="110" height="68" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+        <text x="370" y="520" text-anchor="middle" fill="#9a3412" font-size="11" font-weight="600">自定义or季度</text>
+        <text x="370" y="534" text-anchor="middle" fill="#ea580c" font-size="9">需输入各字段</text>
+        <text x="370" y="546" text-anchor="middle" fill="#ea580c" font-size="9">销售→组长→部门长</text>
+        <text x="370" y="558" text-anchor="middle" fill="#ea580c" font-size="9">组长→部门长</text>
+
+
+        <!-- ==================== 分支2: 修改 (居中轴 X=580) ==================== -->
+        <line x1="580" y1="160" x2="580" y2="190" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="500" y="190" width="160" height="44" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+        <text x="580" y="211" text-anchor="middle" fill="#1e40af" font-size="13" font-weight="600">修改</text>
+        <text x="580" y="225" text-anchor="middle" fill="#3b82f6" font-size="10">Modify</text>
+
+        <line x1="580" y1="234" x2="580" y2="260" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="490" y="260" width="180" height="44" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="580" y="281" text-anchor="middle" fill="#92400e" font-size="12" font-weight="600">搜索组织名称</text>
+        <text x="580" y="295" text-anchor="middle" fill="#d97706" font-size="10">下拉搜索选择</text>
+
+        <line x1="580" y1="304" x2="580" y2="340" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="475" y="340" width="210" height="56" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+        <text x="580" y="360" text-anchor="middle" fill="#3730a3" font-size="12" font-weight="600">展示组织全部内容</text>
+        <text x="580" y="374" text-anchor="middle" fill="#6366f1" font-size="10">组织名称、账号不可修改</text>
+        <text x="580" y="386" text-anchor="middle" fill="#6366f1" font-size="10">其他字段均可修改</text>
+
+        <line x1="580" y1="396" x2="580" y2="430" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="490" y="430" width="180" height="44" rx="8" fill="#f3e8ff" stroke="#a855f7" stroke-width="2"/>
+        <text x="580" y="451" text-anchor="middle" fill="#6b21a8" font-size="12" font-weight="600">SIM套餐变更/账单周期</text>
+        <text x="580" y="465" text-anchor="middle" fill="#9333ea" font-size="10">标准和自定义/月底和季度</text>
+
+        <!-- 修改SIM分叉 -> 修改-标准 (X=510) & 修改-自定义 (X=650) -->
+        <path d="M 580 474 L 580 488 L 510 488 L 510 500" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <path d="M 580 474 L 580 488 L 650 488 L 650 500" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 修改-标准套餐 (X=510) -->
+        <rect x="455" y="500" width="110" height="68" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+        <text x="510" y="520" text-anchor="middle" fill="#065f46" font-size="11" font-weight="600">标准and月度</text>
+        <text x="510" y="534" text-anchor="middle" fill="#059669" font-size="9">固定内容不可改</text>
+        <text x="510" y="546" text-anchor="middle" fill="#059669" font-size="9">销售→组长审批</text>
+        <text x="510" y="558" text-anchor="middle" fill="#059669" font-size="9">组长直接归档</text>
+
+        <!-- 修改-自定义套餐 (X=650) -->
+        <rect x="595" y="500" width="110" height="68" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+        <text x="650" y="520" text-anchor="middle" fill="#9a3412" font-size="11" font-weight="600">自定义or季度</text>
+        <text x="650" y="534" text-anchor="middle" fill="#ea580c" font-size="9">需输入各字段</text>
+        <text x="650" y="546" text-anchor="middle" fill="#ea580c" font-size="9">销售→组长→部门长</text>
+        <text x="650" y="558" text-anchor="middle" fill="#ea580c" font-size="9">组长→部门长</text>
+
+
+        <!-- ==================== 分支3: 废弃 (居中轴 X=940) ==================== -->
+        <line x1="940" y1="160" x2="940" y2="190" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="860" y="190" width="160" height="44" rx="8" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+        <text x="940" y="211" text-anchor="middle" fill="#991b1b" font-size="13" font-weight="600">废弃</text>
+        <text x="940" y="225" text-anchor="middle" fill="#dc2626" font-size="10">Delete</text>
+
+        <line x1="940" y1="234" x2="940" y2="260" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="850" y="260" width="180" height="44" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="940" y="281" text-anchor="middle" fill="#92400e" font-size="12" font-weight="600">搜索组织名称</text>
+        <text x="940" y="295" text-anchor="middle" fill="#d97706" font-size="10">下拉搜索选择</text>
+
+        <line x1="940" y1="304" x2="940" y2="340" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="835" y="340" width="210" height="56" rx="8" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+        <text x="940" y="360" text-anchor="middle" fill="#991b1b" font-size="12" font-weight="600">展示组织全部内容（只读）</text>
+        <text x="940" y="374" text-anchor="middle" fill="#dc2626" font-size="10">不可修改</text>
+        <text x="940" y="386" text-anchor="middle" fill="#dc2626" font-size="10">点击删除按钮删除客户</text>
+
+
+        <!-- ==================== 连接线汇入审批矩阵 ==================== -->
+        <!-- 内部 -> 矩阵 -->
+        <line x1="110" y1="474" x2="110" y2="620" stroke="#10b981" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead-green)"/>
+        <!-- 创建-标准 -> 矩阵 -->
+        <line x1="230" y1="568" x2="230" y2="620" stroke="#10b981" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead-green)"/>
+        <!-- 创建-自定义 -> 矩阵 -->
+        <line x1="370" y1="568" x2="370" y2="620" stroke="#f97316" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead-orange)"/>
+        <!-- 修改-标准 -> 矩阵 -->
+        <line x1="510" y1="568" x2="510" y2="620" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead-blue)"/>
+        <!-- 修改-自定义 -> 矩阵 -->
+        <line x1="650" y1="568" x2="650" y2="620" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead-blue)"/>
+        <!-- 废弃 -> 矩阵 -->
+        <line x1="940" y1="396" x2="940" y2="620" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead-red)"/>
+
+
+        <!-- ==================== 审批流程矩阵区域 ==================== -->
+        <rect x="50" y="620" width="1050" height="36" rx="8" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+        <text x="575" y="643" text-anchor="middle" fill="white" font-size="14" font-weight="bold">审批流程矩阵</text>
+
+        <rect x="50" y="656" width="1050" height="476" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+
+        <!-- 表头 -->
+        <rect x="50" y="656" width="262" height="36" fill="#f8fafc" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="181" y="679" text-anchor="middle" fill="#374151" font-size="12" font-weight="600">业务场景</text>
+        <rect x="312" y="656" width="262" height="36" fill="#f8fafc" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="443" y="679" text-anchor="middle" fill="#374151" font-size="12" font-weight="600">发起人角色</text>
+        <rect x="574" y="656" width="262" height="36" fill="#f8fafc" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="705" y="679" text-anchor="middle" fill="#374151" font-size="12" font-weight="600">审批路径</text>
+        <rect x="836" y="656" width="264" height="36" fill="#f8fafc" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="968" y="679" text-anchor="middle" fill="#374151" font-size="12" font-weight="600">归档对象</text>
+
+        <!-- 表格行1 -->
+        <rect x="50" y="692" width="262" height="40" fill="#e0e7ff" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="181" y="710" text-anchor="middle" fill="#3730a3" font-size="11" font-weight="600">创建内部组织</text>
+        <text x="181" y="724" text-anchor="middle" fill="#6366f1" font-size="10">（发起人发起）</text>
+        <rect x="312" y="692" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="443" y="716" text-anchor="middle" fill="#374151" font-size="12">发起人</text>
+        <rect x="574" y="692" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="705" y="716" text-anchor="middle" fill="#374151" font-size="12">发起人 → 产品经理</text>
+        <rect x="836" y="692" width="264" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="968" y="716" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">发起人 + 产品经理</text>
+
+        <!-- 表格行2 -->
+        <rect x="50" y="732" width="262" height="40" fill="#ecfdf5" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="181" y="750" text-anchor="middle" fill="#065f46" font-size="11" font-weight="600">创建-标准套餐and月度账单</text>
+        <text x="181" y="764" text-anchor="middle" fill="#059669" font-size="10">（销售发起）</text>
+        <rect x="312" y="732" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="443" y="756" text-anchor="middle" fill="#374151" font-size="12">销售</text>
+        <rect x="574" y="732" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="705" y="756" text-anchor="middle" fill="#374151" font-size="12">销售 → 销售组长</text>
+        <rect x="836" y="732" width="264" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="968" y="756" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">销管 + 销售</text>
+
+        <!-- 表格行3 -->
+        <rect x="50" y="772" width="262" height="40" fill="#fff7ed" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="181" y="790" text-anchor="middle" fill="#9a3412" font-size="11" font-weight="600">创建-标准套餐and月度账单</text>
+        <text x="181" y="804" text-anchor="middle" fill="#ea580c" font-size="10">（组长发起）</text>
+        <rect x="312" y="772" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="443" y="796" text-anchor="middle" fill="#374151" font-size="12">销售组长</text>
+        <rect x="574" y="772" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="705" y="796" text-anchor="middle" fill="#374151" font-size="12">直接通过（无需审批）</text>
+        <rect x="836" y="772" width="264" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="968" y="796" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">销管 + 销售组长</text>
+
+        <!-- 表格行4 -->
+        <rect x="50" y="812" width="262" height="40" fill="#ecfdf5" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="181" y="830" text-anchor="middle" fill="#065f46" font-size="11" font-weight="600">创建-自定义套餐or季度账单</text>
+        <text x="181" y="844" text-anchor="middle" fill="#059669" font-size="10">（销售发起）</text>
+        <rect x="312" y="812" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="443" y="836" text-anchor="middle" fill="#374151" font-size="12">销售</text>
+        <rect x="574" y="812" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="705" y="836" text-anchor="middle" fill="#374151" font-size="11">销售 → 销售组长 → 部门长</text>
+        <rect x="836" y="812" width="264" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="968" y="836" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">销管 + 销售</text>
+
+        <!-- 表格行5 -->
+        <rect x="50" y="852" width="262" height="40" fill="#fff7ed" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="181" y="870" text-anchor="middle" fill="#9a3412" font-size="11" font-weight="600">创建-自定义套餐or季度账单</text>
+        <text x="181" y="884" text-anchor="middle" fill="#ea580c" font-size="10">（组长发起）</text>
+        <rect x="312" y="852" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="443" y="876" text-anchor="middle" fill="#374151" font-size="12">销售组长</text>
+        <rect x="574" y="852" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="705" y="876" text-anchor="middle" fill="#374151" font-size="12">销售组长 → 部门长</text>
+        <rect x="836" y="852" width="264" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="968" y="876" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">销管 + 销售组长</text>
+
+        <!-- 表格行6 -->
+        <rect x="50" y="892" width="262" height="40" fill="#dbeafe" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="181" y="910" text-anchor="middle" fill="#1e40af" font-size="11" font-weight="600">修改-标准套餐and月度账单</text>
+        <text x="181" y="924" text-anchor="middle" fill="#3b82f6" font-size="10">（销售发起）</text>
+        <rect x="312" y="892" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="443" y="916" text-anchor="middle" fill="#374151" font-size="12">销售</text>
+        <rect x="574" y="892" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="705" y="916" text-anchor="middle" fill="#374151" font-size="12">销售 → 销售组长</text>
+        <rect x="836" y="892" width="264" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="968" y="916" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">销管 + 销售</text>
+
+        <!-- 表格行7 -->
+        <rect x="50" y="932" width="262" height="40" fill="#dbeafe" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="181" y="950" text-anchor="middle" fill="#1e40af" font-size="11" font-weight="600">修改-标准套餐and月度账单</text>
+        <text x="181" y="964" text-anchor="middle" fill="#3b82f6" font-size="10">（组长发起）</text>
+        <rect x="312" y="932" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="443" y="956" text-anchor="middle" fill="#374151" font-size="12">销售组长</text>
+        <rect x="574" y="932" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="705" y="956" text-anchor="middle" fill="#374151" font-size="12">直接通过（无需审批）</text>
+        <rect x="836" y="932" width="264" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="968" y="956" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">销管 + 销售组长</text>
+
+        <!-- 表格行8 -->
+        <rect x="50" y="972" width="262" height="40" fill="#dbeafe" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="181" y="990" text-anchor="middle" fill="#1e40af" font-size="11" font-weight="600">修改-自定义套餐or季度账单</text>
+        <text x="181" y="1004" text-anchor="middle" fill="#3b82f6" font-size="10">（销售发起）</text>
+        <rect x="312" y="972" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="443" y="996" text-anchor="middle" fill="#374151" font-size="12">销售</text>
+        <rect x="574" y="972" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="705" y="996" text-anchor="middle" fill="#374151" font-size="11">销售 → 销售组长 → 部门长</text>
+        <rect x="836" y="972" width="264" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="968" y="996" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">销管 + 销售</text>
+
+        <!-- 表格行9 -->
+        <rect x="50" y="1012" width="262" height="40" fill="#dbeafe" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="181" y="1030" text-anchor="middle" fill="#1e40af" font-size="11" font-weight="600">修改-自定义套餐or季度账单</text>
+        <text x="181" y="1044" text-anchor="middle" fill="#3b82f6" font-size="10">（组长发起）</text>
+        <rect x="312" y="1012" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="443" y="1036" text-anchor="middle" fill="#374151" font-size="12">销售组长</text>
+        <rect x="574" y="1012" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="705" y="1036" text-anchor="middle" fill="#374151" font-size="12">销售组长 → 部门长</text>
+        <rect x="836" y="1012" width="264" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="968" y="1036" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">销管 + 销售组长</text>
+
+        <!-- 表格行10 -->
+        <rect x="50" y="1052" width="262" height="40" fill="#fee2e2" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="181" y="1070" text-anchor="middle" fill="#991b1b" font-size="11" font-weight="600">客户废弃</text>
+        <text x="181" y="1084" text-anchor="middle" fill="#dc2626" font-size="10">（销售/组长发起）</text>
+        <rect x="312" y="1052" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="443" y="1076" text-anchor="middle" fill="#374151" font-size="12">销售 / 销售组长</text>
+        <rect x="574" y="1052" width="262" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="705" y="1076" text-anchor="middle" fill="#374151" font-size="11">发起人 → 组长(若有) → 部门长</text>
+        <rect x="836" y="1052" width="264" height="40" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="968" y="1076" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="600">销管 + 发起人</text>
+
+        <!-- 说明栏 -->
+        <rect x="50" y="1150" width="1050" height="90" rx="8" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="4,4"/>
+        <text x="70" y="1173" fill="#0369a1" font-size="12" font-weight="600">说明：</text>
+        <text x="70" y="1193" fill="#0c4a6e" font-size="11">• 创建内部组织：发起人→产品经理审批，归档到发起人+产品经理</text>
+        <text x="70" y="1211" fill="#0c4a6e" font-size="11">• 创建/修改 客户标准套餐（销售发起）：销售→销售组长审批，通过后归档销管+销售</text>
+        <text x="70" y="1229" fill="#0c4a6e" font-size="11">• 创建/修改 客户标准套餐（组长发起）：直接通过，归档销管+销售组长（无需审批）</text>
+
+        <!-- 尾端：流程结束 -->
+        <line x1="575" y1="1240" x2="575" y2="1330" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <ellipse cx="575" cy="1358" rx="70" ry="28" fill="#10b981" stroke="#059669" stroke-width="2"/>
+        <text x="575" y="1364" text-anchor="middle" fill="white" font-size="14" font-weight="bold">流程结束</text>
+
+        <!-- 图例 -->
+        <rect x="50" y="1410" width="1050" height="70" rx="8" fill="#fafafa" stroke="#e5e7eb" stroke-width="1"/>
+        <text x="70" y="1433" fill="#374151" font-size="12" font-weight="600">图例</text>
+        <rect x="70" y="1445" width="16" height="16" rx="4" fill="#d1fae5" stroke="#10b981"/>
+        <text x="94" y="1458" fill="#4b5563" font-size="11">创建流程</text>
+        <rect x="180" y="1445" width="16" height="16" rx="4" fill="#dbeafe" stroke="#3b82f6"/>
+        <text x="204" y="1458" fill="#4b5563" font-size="11">修改流程</text>
+        <rect x="290" y="1445" width="16" height="16" rx="4" fill="#fee2e2" stroke="#ef4444"/>
+        <text x="314" y="1458" fill="#4b5563" font-size="11">废弃流程</text>
+        <rect x="400" y="1445" width="16" height="16" rx="4" fill="#fef3c7" stroke="#f59e0b"/>
+        <text x="424" y="1458" fill="#4b5563" font-size="11">条件判断</text>
+        <line x1="520" y1="1453" x2="560" y2="1453" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,5"/>
+        <text x="570" y="1458" fill="#4b5563" font-size="11">需审批路径</text>
+        <rect x="680" y="1445" width="16" height="16" rx="4" fill="#e0e7ff" stroke="#6366f1"/>
+        <text x="704" y="1458" fill="#4b5563" font-size="11">内部审批</text>
+      </svg>
+    </div>
+  </div>
+
+  <div id="panel-oaform" style="display: none;">
+    <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+      
+
+      <div style="border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; background: #fafafa;">
+        <div id="oa-form-container"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let formState = {
+  purpose: '创建',
+  usage: '客户',
+  simPackage: '自定义',
+  initiatorRole: '销售'
+};
+
+const standardPackage = {
+  firstYearFee: '12',
+  monthlyRent: '1',
+  includedData: '3',
+  overagePrice: '0.1',
+  deviceMgmtFee: '0',
+  deviceMgmtFreePeriod: '0'
+};
+
+document.getElementById('tab-flowchart').addEventListener('click', function() {
+  document.getElementById('panel-flowchart').style.display = 'block';
+  document.getElementById('panel-oaform').style.display = 'none';
+  this.style.background = '#4f46e5';
+  this.style.color = 'white';
+  this.style.boxShadow = '0 2px 8px rgba(79,70,229,0.3)';
+  document.getElementById('tab-oaform').style.background = '#e5e7eb';
+  document.getElementById('tab-oaform').style.color = '#4b5563';
+  document.getElementById('tab-oaform').style.boxShadow = 'none';
+});
+
+document.getElementById('tab-oaform').addEventListener('click', function() {
+  document.getElementById('panel-flowchart').style.display = 'none';
+  document.getElementById('panel-oaform').style.display = 'block';
+  this.style.background = '#4f46e5';
+  this.style.color = 'white';
+  this.style.boxShadow = '0 2px 8px rgba(79,70,229,0.3)';
+  document.getElementById('tab-flowchart').style.background = '#e5e7eb';
+  document.getElementById('tab-flowchart').style.color = '#4b5563';
+  document.getElementById('tab-flowchart').style.boxShadow = 'none';
+});
+
+function handlePurposeChange(value) {
+  formState.purpose = value;
+  if (value === '创建') {
+    formState.usage = '客户';
+    formState.simPackage = '自定义';
+  }
+  renderForm();
+}
+
+function handleUsageChange(value) {
+  formState.usage = value;
+  if (value === '客户') {
+    formState.simPackage = '自定义';
+  }
+  renderForm();
+}
+
+function handleSimPackageChange(value) {
+  formState.simPackage = value;
+  renderForm();
+}
+
+function handleInitiatorChange(value) {
+  formState.initiatorRole = value;
+  renderForm();
+}
+
+function renderForm() {
+  const container = document.getElementById('oa-form-container');
+
+  let html = '<div style="margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px solid #e5e7eb;">' +
+    '<h3 style="color: #1a1a2e; font-size: 18px; margin: 0;">Mio组织账号申请单</h3>' +
+    '</div>' +
+    '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">';
+
+  html += renderSelect('purpose', '类型', ['创建', '修改', '废弃'], formState.purpose, 'handlePurposeChange');
+  html += renderTextarea('description', '描述', '', '请输入描述...', true);
+
+  if (formState.purpose === '创建') {
+    html += renderSelect('usage', '用途', ['内部', '客户'], formState.usage, 'handleUsageChange');
+
+    if (formState.usage === '内部') {
+      html += renderInput('orgName', '组织名称', 'text', '', '请输入组织名称', true);
+      html += renderInput('account', '账号', 'text', '', '请输入账号', true);
+
+      html += renderApproval({
+        title: '创建审批',
+        steps: [
+          { role: '发起人', status: 'current', icon: '' },
+          { role: '产品经理', status: 'pending', icon: '' }
+        ],
+        archive: '审批通过后归档至：发起人 + 产品经理'
+      });
+      html += renderSubmit('提交审批', false);
+
+    } else if (formState.usage === '客户') {
+      html += renderSelect('initiatorRole', '发起人角色', ['销售', '销售组长'], formState.initiatorRole, 'handleInitiatorChange');
+
+      html += renderInput('orgName', '组织名称', 'text', '', '请输入组织名称', true);
+      html += renderInput('account', '账号', 'text', '', '请输入账号', true);
+      html += renderInput('sapCode', 'SAP客户代码', 'text', '', '请输入SAP客户代码，送样客户固定600316', true);
+      html += renderSelect('billingCycle', '账单周期', ['月', '季度'], '月', null);
+      html += renderSelect('salesPeriod', '售卖期', ['6个月', '9个月'], '6个月', null);
+      html += renderSelect('needLogistics', '客户是否需要物流账号', ['YES', 'NO'], 'NO', null);
+
+      html += renderSelect('simPackage', 'SIM卡收费套餐', ['标准', '自定义'], formState.simPackage, 'handleSimPackageChange');
+
+      if (formState.simPackage === '标准') {
+        html += renderPackageSection('standard');
+      } else {
+        html += renderPackageSection('custom');
+      }
+
+      if (formState.simPackage === '标准') {
+        if (formState.initiatorRole === '销售') {
+          html += renderApproval({
+            title: '标准套餐审批',
+            steps: [
+              { role: '销售', status: 'current', icon: '' },
+              { role: '销售组长', status: 'pending', icon: '' }
+            ],
+            archive: '审批通过后归档至：销管 + 销售'
+          });
+        } else {
+          html += renderApproval({
+            title: '标准套餐审批',
+            steps: [
+              { role: '销售组长', status: 'current', icon: '' }
+            ],
+            archive: '直接通过，归档至：销管 + 销售组长'
+          });
+        }
+      } else {
+        if (formState.initiatorRole === '销售') {
+          html += renderApproval({
+            title: '自定义套餐审批',
+            steps: [
+              { role: '销售', status: 'current', icon: '' },
+              { role: '销售组长', status: 'pending', icon: '' },
+              { role: '部门长', status: 'pending', icon: '' }
+            ],
+            archive: '审批通过后归档至：销管 + 销售'
+          });
+        } else {
+          html += renderApproval({
+            title: '自定义套餐审批',
+            steps: [
+              { role: '销售组长', status: 'current', icon: '' },
+              { role: '部门长', status: 'pending', icon: '' }
+            ],
+            archive: '审批通过后归档至：销管 + 销售组长'
+          });
+        }
+      }
+
+      html += renderSubmit(formState.simPackage === '标准' && formState.initiatorRole === '销售组长' ? '直接归档' : '提交审批', false);
+    }
+
+  } else if (formState.purpose === '修改') {
+    html += '<div style="grid-column: 1 / -1;">' + renderSearch('orgSearch', '搜索组织', '输入组织名称搜索...') + '</div>';
+
+    html += renderInput('orgName', '组织名称', 'text', '示例客户组织A', '', false, true);
+    html += renderInput('account', '账号', 'text', 'ORG_2024001', '', false, true);
+    html += renderInput('sapCode', 'SAP客户代码', 'text', 'SAP001234', '', true, false, false);
+    html += renderSelect('billingCycle', '账单周期', ['月', '季度'], '月', null, false);
+    html += renderSelect('salesPeriod', '售卖期', ['6个月', '9个月'], '6个月', null, false);
+    html += renderSelect('needLogistics', '客户是否需要物流账号', ['YES', 'NO'], 'NO', null, false);
+
+    html += renderSelect('simPackage', 'SIM卡收费套餐', ['标准', '自定义'], formState.simPackage, 'handleSimPackageChange', false);
+
+    if (formState.simPackage === '标准') {
+      html += renderPackageSection('standard');
+    } else {
+      html += renderPackageSection('custom');
+    }
+
+    html += renderSelect('initiatorRole', '发起人角色', ['销售', '销售组长'], formState.initiatorRole, 'handleInitiatorChange', false);
+
+    if (formState.simPackage === '标准') {
+      if (formState.initiatorRole === '销售') {
+        html += renderApproval({
+          title: '标准套餐修改审批',
+          steps: [
+            { role: '销售', status: 'current', icon: '' },
+            { role: '销售组长', status: 'pending', icon: '' }
+          ],
+          archive: '审批通过后归档至：销管 + 销售'
+        });
+      } else {
+        html += renderApproval({
+          title: '标准套餐修改审批',
+          steps: [
+            { role: '销售组长', status: 'current', icon: '' }
+          ],
+          archive: '直接通过，归档至：销管 + 销售组长'
+        });
+      }
+    } else {
+      if (formState.initiatorRole === '销售') {
+        html += renderApproval({
+          title: '自定义套餐修改审批',
+          steps: [
+            { role: '销售', status: 'current', icon: '' },
+            { role: '销售组长', status: 'pending', icon: '' },
+            { role: '部门长', status: 'pending', icon: '' }
+          ],
+          archive: '审批通过后归档至：销管 + 销售'
+        });
+      } else {
+        html += renderApproval({
+          title: '自定义套餐修改审批',
+          steps: [
+            { role: '销售组长', status: 'current', icon: '' },
+            { role: '部门长', status: 'pending', icon: '' }
+          ],
+          archive: '审批通过后归档至：销管 + 销售组长'
+        });
+      }
+    }
+
+    html += renderSubmit(formState.simPackage === '标准' && formState.initiatorRole === '销售组长' ? '直接归档' : '提交修改', false);
+
+  } else if (formState.purpose === '废弃') {
+    html += '<div style="grid-column: 1 / -1;">' + renderSearch('orgSearch', '搜索组织', '输入组织名称搜索...') + '</div>';
+
+    html += renderInput('orgName', '组织名称', 'text', '示例客户组织A', '', false, true);
+    html += renderInput('account', '账号', 'text', 'ORG_2024001', '', false, true);
+    html += renderInput('sapCode', 'SAP客户代码', 'text', 'SAP001234', '', false, true);
+    html += renderSelect('billingCycle', '账单周期', ['月', '季度'], '月', null, true);
+    html += renderSelect('salesPeriod', '售卖期', ['6个月', '9个月'], '6个月', null, true);
+    html += renderSelect('needLogistics', '客户是否需要物流账号', ['YES', 'NO'], 'NO', null, true);
+    html += renderSelect('simPackage', 'SIM卡收费套餐', ['标准', '自定义'], '标准', null, true);
+    html += renderPackageSection('standard', true);
+
+    html += renderApproval({
+      title: '废弃审批',
+      steps: [
+        { role: '销售', status: 'current', icon: '' },
+        { role: '销售组长', status: 'pending', icon: '' },
+        { role: '部门长', status: 'pending', icon: '' }
+      ],
+      archive: '审批通过后归档至：销管 + 销售'
+    });
+    html += renderSubmit('提交废弃申请', true);
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function renderSelect(id, label, options, value, onchange, readonly) {
+  const readonlyAttr = readonly ? 'disabled' : '';
+  const readonlyStyle = readonly ? 'background: #f3f4f6; color: #6b7280; cursor: not-allowed;' : 'background: white; color: #1f2937;';
+  const onchangeAttr = onchange ? 'onchange="' + onchange + '(this.value)"' : '';
+
+  return '<div>' +
+    '<label style="display: block; margin-bottom: 6px; font-size: 13px; color: #374151; font-weight: 500;">' +
+    label + ' <span style="color: #ef4444;">*</span></label>' +
+    '<select id="' + id + '" ' + readonlyAttr + ' ' + onchangeAttr +
+    ' style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; ' + readonlyStyle + '">' +
+    options.map(opt => '<option value="' + opt + '"' + (value === opt ? ' selected' : '') + '>' + opt + '</option>').join('') +
+    '</select></div>';
+}
+
+function renderInput(id, label, type, value, placeholder, required, readonly, editable) {
+  const readonlyAttr = readonly ? 'readonly' : '';
+  const readonlyStyle = readonly ? 'background: #f3f4f6; color: #6b7280; cursor: not-allowed;' : 'background: white; color: #1f2937;';
+  const editableStyle = editable ? 'border-color: #3b82f6; background: #eff6ff;' : '';
+  const requiredMark = required ? '<span style="color: #ef4444;">*</span>' : '';
+
+  return '<div>' +
+    '<label style="display: block; margin-bottom: 6px; font-size: 13px; color: #374151; font-weight: 500;">' +
+    label + ' ' + requiredMark + '</label>' +
+    '<input type="' + type + '" id="' + id + '" value="' + value + '" placeholder="' + placeholder + '" ' + readonlyAttr +
+    ' style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; ' + readonlyStyle + ' ' + editableStyle + '" />' +
+    '</div>';
+}
+
+function renderTextarea(id, label, value, placeholder, required) {
+  const requiredMark = required ? '<span style="color: #ef4444;">*</span>' : '';
+  return '<div>' +
+    '<label style="display: block; margin-bottom: 6px; font-size: 13px; color: #374151; font-weight: 500;">' +
+    label + ' ' + requiredMark + '</label>' +
+    '<textarea id="' + id + '" placeholder="' + placeholder + '" ' +
+    'style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: white; color: #1f2937; resize: vertical; min-height: 80px;">' + value + '</textarea>' +
+    '</div>';
+}
+
+function renderSearch(id, label, placeholder) {
+  return '<div>' +
+    '<label style="display: block; margin-bottom: 6px; font-size: 13px; color: #374151; font-weight: 500;">' +
+    label + ' <span style="color: #ef4444;">*</span></label>' +
+    '<div style="position: relative;">' +
+    '<input type="text" id="' + id + '" placeholder="' + placeholder + '" ' +
+    'style="width: 100%; padding: 10px 12px 10px 36px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: white;" />' +
+    '<span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%);">🔍</span>' +
+    '</div></div>';
+}
+
+function renderPackageSection(mode, readonly) {
+  const isStandard = mode === 'standard';
+  const title = isStandard ? '标准收费套餐（不可修改）' : '自定义收费套餐';
+  const bgColor = isStandard ? '#ecfdf5' : '#fff7ed';
+  const borderColor = isStandard ? '#10b981' : '#f97316';
+  const textColor = isStandard ? '#065f46' : '#9a3412';
+
+  const fields = [
+    { key: 'firstYearFee', label: '第一年收费', suffix: '美金' },
+    { key: 'monthlyRent', label: '月租', suffix: '美金' },
+    { key: 'includedData', label: '套餐内流量', suffix: 'MB' },
+    { key: 'overagePrice', label: '超出套餐流量价格', suffix: '美金/MB' },
+    { key: 'deviceMgmtFee', label: '设备管理费用', suffix: '美金/月' },
+    { key: 'deviceMgmtFreePeriod', label: '设备管理费用免费期', suffix: '月' }
+  ];
+
+  let fieldsHtml = '';
+  fields.forEach(f => {
+    const val = isStandard ? standardPackage[f.key] : '';
+    const ph = isStandard ? '' : '请输入' + f.label;
+    const ro = isStandard || readonly;
+    const roStyle = ro ? 'background: #f3f4f6; color: #6b7280; cursor: not-allowed;' : 'background: white; color: #1f2937;';
+    const roAttr = ro ? 'readonly' : '';
+    const suffixHtml = f.suffix ? '<span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #9ca3af; font-size: 13px;">' + f.suffix + '</span>' : '';
+    const paddingRight = f.suffix ? 'padding-right: 60px;' : '';
+
+    fieldsHtml += '<div>' +
+      '<label style="display: block; margin-bottom: 6px; font-size: 13px; color: #374151; font-weight: 500;">' + f.label + '</label>' +
+      '<div style="position: relative;">' +
+      '<input type="text" value="' + val + '" placeholder="' + ph + '" ' + roAttr +
+      ' style="width: 100%; padding: 10px 12px; ' + paddingRight + ' border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; ' + roStyle + '" />' +
+      suffixHtml +
+      '</div></div>';
+  });
+
+  return '<div style="grid-column: 1 / -1; margin: 8px 0 4px 0; padding: 12px 16px; background: ' + bgColor + '; border-radius: 8px; border-left: 4px solid ' + borderColor + ';">' +
+    '<span style="color: ' + textColor + '; font-size: 13px; font-weight: 600;">' + title + '</span>' +
+    '</div>' + fieldsHtml;
+}
+
+function renderApproval(config) {
+  let stepsHtml = '';
+  config.steps.forEach((step, idx) => {
+    const statusColor = step.status === 'current' ? '#4f46e5' : step.status === 'done' ? '#10b981' : '#9ca3af';
+    const bgColor = step.status === 'current' ? '#eef2ff' : step.status === 'done' ? '#ecfdf5' : '#f3f4f6';
+    stepsHtml += '<div style="display: flex; align-items: center; gap: 6px;">' +
+      '<div style="padding: 8px 16px; background: ' + bgColor + '; border-radius: 20px; border: 2px solid ' + statusColor + '; display: flex; align-items: center; gap: 6px;">' +
+      '<span>' + step.icon + '</span>' +
+      '<span style="font-size: 13px; font-weight: 600; color: ' + statusColor + ';">' + step.role + '</span>' +
+      (step.status === 'current' ? '<span style="width: 8px; height: 8px; background: #4f46e5; border-radius: 50%; animation: pulse 1.5s infinite;"></span>' : '') +
+      '</div>' +
+      (idx < config.steps.length - 1 ? '<span style="color: #9ca3af; font-size: 18px;">→</span>' : '') +
+      '</div>';
+  });
+
+  return '<div style="grid-column: 1 / -1; margin-top: 16px; padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">' +
+    '<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">' +
+    '<span style="font-size: 18px;"></span>' +
+    '<span style="font-weight: 600; color: #1e293b; font-size: 15px;">' + config.title + '</span>' +
+    '</div>' +
+    '<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;">' + stepsHtml + '</div>' +
+    '<div style="padding: 10px 14px; background: #ede9fe; border-radius: 8px; border-left: 3px solid #8b5cf6;">' +
+    '<span style="font-size: 13px; color: #5b21b6;">' + config.archive + '</span>' +
+    '</div></div>';
+}
+
+function renderSubmit(text, isDanger) {
+  const btnColor = isDanger ? '#dc2626' : '#4f46e5';
+  return '<div style="grid-column: 1 / -1; margin-top: 8px; display: flex; justify-content: flex-end; gap: 12px;">' +
+    '<button style="padding: 10px 24px; border: 1px solid #d1d5db; border-radius: 8px; background: white; color: #4b5563; font-size: 14px; cursor: pointer; font-weight: 500;">取消</button>' +
+    '<button style="padding: 10px 28px; border: none; border-radius: 8px; background: ' + btnColor + '; color: white; font-size: 14px; cursor: pointer; font-weight: 600; box-shadow: 0 2px 8px ' + btnColor + '40;">' + text + '</button>' +
+    '</div>';
+}
+
+renderForm();
+</script>
+
+</body>
+</html>
