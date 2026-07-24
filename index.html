@@ -474,7 +474,7 @@ function renderForm() {
       html += renderSubmit('提交审批', false);
 
     } else if (formState.usage === '客户') {
-      html += renderSelect('initiatorRole', '发起人角色', ['销售', '销售组长'], formState.initiatorRole, 'handleInitiatorChange');
+      html += renderSelect('initiatorRole', '托管方式', ['全托', '半托','无托'], formState.initiatorRole, 'handleInitiatorChange');
 
       html += renderInput('orgName', '组织名称', 'text', '', '请输入组织名称', true);
       html += renderInput('account', '账号', 'text', '', '请输入账号', true);
@@ -554,7 +554,7 @@ function renderForm() {
       html += renderPackageSection('custom');
     }
 
-    html += renderSelect('initiatorRole', '发起人角色', ['销售', '销售组长'], formState.initiatorRole, 'handleInitiatorChange', false);
+    html += renderSelect('initiatorRole', '托管方式', ['全托', '半托','无托'], formState.initiatorRole, 'handleInitiatorChange', false);
 
     if (formState.simPackage === '标准') {
       if (formState.initiatorRole === '销售') {
